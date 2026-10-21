@@ -221,10 +221,10 @@ $mechs = [
 foreach($mechs as $k => $l){
     echo "
     <div style='display:flex;flex-direction:column;gap:4px;'>
-        <label>$l</label>
-        <select class='input' name='$k'>
-            <option value='true'><?php echo INST_OPT_TRUE; ?></option>
-            <option value='false' selected><?php echo INST_OPT_FALSE; ?></option>
+        <label>".htmlspecialchars($l, ENT_QUOTES, 'UTF-8')."</label>
+        <select class='input' name='".htmlspecialchars($k, ENT_QUOTES, 'UTF-8')."'>
+            <option value='true'>".INST_OPT_TRUE."</option>
+            <option value='false' selected>".INST_OPT_FALSE."</option>
         </select>
     </div>";
 }
