@@ -52,31 +52,31 @@ if(isset($_GET['err']) && $_GET['err'] == 2) {
       <div><label><?php echo INST_LBL_ADMIN_PASS; ?></label><input class="input" name="apass" type="password"></div>
       <div><label><?php echo INST_LBL_TRIBE; ?></label>
         <select class="input" name="atribe">
-          <option value="1" selected>Romans</option>
-          <option value="2">Teutons</option>
-          <option value="3">Gauls</option>
-		  <option value="6">Huns</option>
-		  <option value="7">Egyptians</option>
-		  <option value="8">Spartans</option>
-		  <option value="9">Vikings</option>
+          <option value="1" selected><?php echo INST_OPT_TRIBE_ROMANS; ?></option>
+          <option value="2"><?php echo INST_OPT_TRIBE_TEUTONS; ?></option>
+          <option value="3"><?php echo INST_OPT_TRIBE_GAULS; ?></option>
+		  <option value="6"><?php echo INST_OPT_TRIBE_HUNS; ?></option>
+		  <option value="7"><?php echo INST_OPT_TRIBE_EGYPTIANS; ?></option>
+		  <option value="8"><?php echo INST_OPT_TRIBE_SPARTANS; ?></option>
+		  <option value="9"><?php echo INST_OPT_TRIBE_VIKINGS; ?></option>
         </select>
       </div>
       <div><label><?php echo INST_LBL_SHOW_STATS; ?></label>
         <select class="input" name="admin_rank">
-          <option value="true">true</option>
-          <option value="false" selected>false</option>
+          <option value="true"><?php echo INST_OPT_TRUE; ?></option>
+          <option value="false" selected><?php echo INST_OPT_FALSE; ?></option>
         </select>
       </div>
-      <div><label>Include Support Msgs</label>
+      <div><label><?php echo INST_LBL_INCLUDE_SUPPORT_MSGS; ?></label>
         <select class="input" name="admin_support_msgs">
-          <option value="true" selected>true</option>
-          <option value="false">false</option>
+          <option value="true" selected><?php echo INST_OPT_TRUE; ?></option>
+          <option value="false"><?php echo INST_OPT_FALSE; ?></option>
         </select>
       </div>
-      <div><label>Allow Raidable</label>
+      <div><label><?php echo INST_LBL_ALLOW_RAIDABLE; ?></label>
         <select class="input" name="admin_raidable">
-          <option value="true" selected>true</option>
-          <option value="false">false</option>
+          <option value="true" selected><?php echo INST_OPT_TRUE; ?></option>
+          <option value="false"><?php echo INST_OPT_FALSE; ?></option>
         </select>
       </div>
     </div>
