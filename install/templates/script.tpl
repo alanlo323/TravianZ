@@ -56,27 +56,32 @@ body{margin:0;background:#f1f5f9!important;font-family:system-ui,-apple-system,S
 .step.done .num{background:#bbf7d0!important;color:#166534!important;}
 </style>
 
+<?php
+$tzInstallHeaderHtml = '<div><h1>'.INST_TITLE.'</h1><p>'.INST_HEADER_SUB.'</p></div>';
+$tzInstallFooterHtml = '<div>'.INST_FOOTER_RIGHTS.'</div><div>'.INST_FOOTER_SERVER.'</div>';
+?>
+<script>
+window.TZ_INSTALL_HEADER_HTML = <?php echo json_encode($tzInstallHeaderHtml, JSON_UNESCAPED_UNICODE); ?>;
+window.TZ_INSTALL_FOOTER_HTML = <?php echo json_encode($tzInstallFooterHtml, JSON_UNESCAPED_UNICODE); ?>;
+</script>
 <script>
 document.addEventListener('DOMContentLoaded',function(){
   // HEADER
   var h = document.createElement('div');
   h.className = 'tz-header';
-  h.innerHTML = `
-    <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  h.innerHTML = `<svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M32 4L8 14v14c0 13.5 9.3 26.1 24 30 14.7-3.9 24-16.5 24-30V14L32 4z" fill="url(#g)"/>
       <path d="M32 8l20 8v12c0 11.2-7.7 21.7-20 25-12.3-3.3-20-13.8-20-25V16l20-8z" fill="#16a34a" opacity=".9"/>
       <path d="M26 32l5 5 11-11" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
       <defs><linearGradient id="g" x1="8" y1="4" x2="56" y2="58"><stop stop-color="#22c55e"/><stop offset="1" stop-color="#0f172a"/></linearGradient></defs>
-    </svg>
-    <div><h1>TravianZ Installation</h1><p>Setup wizard • v.11.0 Full Refactor&Redesign</p></div>
-  `;
+    </svg>` + window.TZ_INSTALL_HEADER_HTML;
   var wrap = document.querySelector('.wrapper');
   if(wrap) wrap.parentNode.insertBefore(h, wrap);
 
   // FOOTER
   var f = document.createElement('div');
   f.className = 'tz-footer';
-  f.innerHTML = `<div>© 2010 - 2026 TravianZ • All rights reserved</div><div>Server running on <b>v.11.0 Full Refactor&Redesign</b></div>`;
+  f.innerHTML = window.TZ_INSTALL_FOOTER_HTML;
   document.body.appendChild(f);
 
   // curăță resturi vechi

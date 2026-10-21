@@ -20,37 +20,37 @@
 #################################################################################
 
 if(isset($_GET['err']) && $_GET['err'] == 1) {
-    echo '<div class="card" style="background:#fef2f2;border-color:#fecaca;color:#991b1b;margin-bottom:14px;">At least Multihunter & Support password are required.</div>';
+    echo '<div class="card" style="background:#fef2f2;border-color:#fecaca;color:#991b1b;margin-bottom:14px;">'.INST_ERR_MH_PASS.'</div>';
 }
 if(isset($_GET['err']) && $_GET['err'] == 2) {
-    echo '<div class="card" style="background:#fef2f2;border-color:#fecaca;color:#991b1b;margin-bottom:14px;">Natars is reserved. Choose different admin username.</div>';
+    echo '<div class="card" style="background:#fef2f2;border-color:#fecaca;color:#991b1b;margin-bottom:14px;">'.INST_ERR_NATARS_NAME.'</div>';
 }
 ?>
 <form action="include/accounts.php" method="post" id="dataform">
   <div class="grid-2">
     <div class="card">
-      <span class="f10 c">Multihunter account</span>
+      <span class="f10 c"><?php echo INST_MH_ACCOUNT; ?></span>
       <div style="margin-top:12px;display:grid;gap:10px;">
-        <div><label>Name</label><input class="input" type="text" value="Multihunter" disabled></div>
-        <div><label>Password</label><input class="input" type="password" name="mhpw" required></div>
+        <div><label><?php echo INST_LBL_NAME; ?></label><input class="input" type="text" value="Multihunter" disabled></div>
+        <div><label><?php echo INST_LBL_PASSWORD; ?></label><input class="input" type="password" name="mhpw" required></div>
       </div>
     </div>
     <div class="card">
-      <span class="f10 c">Support account</span>
+      <span class="f10 c"><?php echo INST_SUPPORT_ACCOUNT; ?></span>
       <div style="margin-top:12px;display:grid;gap:10px;">
-        <div><label>Name</label><input class="input" type="text" value="Support" disabled></div>
-        <div><label>Password</label><input class="input" type="password" name="spw" required></div>
+        <div><label><?php echo INST_LBL_NAME; ?></label><input class="input" type="text" value="Support" disabled></div>
+        <div><label><?php echo INST_LBL_PASSWORD; ?></label><input class="input" type="password" name="spw" required></div>
       </div>
     </div>
   </div>
 
   <div class="card">
-    <span class="f10 c">Admin account</span>
+    <span class="f10 c"><?php echo INST_ADMIN_ACCOUNT; ?></span>
     <div class="grid-2" style="margin-top:12px;">
-      <div><label>Admin name</label><input class="input" name="aname"></div>
-      <div><label>Admin email</label><input class="input" name="aemail" type="email"></div>
-      <div><label>Admin password</label><input class="input" name="apass" type="password"></div>
-      <div><label>Tribe</label>
+      <div><label><?php echo INST_LBL_ADMIN_NAME; ?></label><input class="input" name="aname"></div>
+      <div><label><?php echo INST_LBL_ADMIN_EMAIL; ?></label><input class="input" name="aemail" type="email"></div>
+      <div><label><?php echo INST_LBL_ADMIN_PASS; ?></label><input class="input" name="apass" type="password"></div>
+      <div><label><?php echo INST_LBL_TRIBE; ?></label>
         <select class="input" name="atribe">
           <option value="1" selected>Romans</option>
           <option value="2">Teutons</option>
@@ -61,7 +61,7 @@ if(isset($_GET['err']) && $_GET['err'] == 2) {
 		  <option value="9">Vikings</option>
         </select>
       </div>
-      <div><label>Show in stats</label>
+      <div><label><?php echo INST_LBL_SHOW_STATS; ?></label>
         <select class="input" name="admin_rank">
           <option value="true">true</option>
           <option value="false" selected>false</option>
@@ -80,9 +80,9 @@ if(isset($_GET['err']) && $_GET['err'] == 2) {
         </select>
       </div>
     </div>
-    <p style="color:#64748b;font-size:12px;margin-top:12px;">Note: leave empty if you want to skip admin creation.</p>
+    <p style="color:#64748b;font-size:12px;margin-top:12px;"><?php echo INST_ADMIN_NOTE; ?></p>
     <div style="text-align:center;margin-top:12px;">
-      <button class="btn" type="submit">Create Accounts</button>
+      <button class="btn" type="submit"><?php echo INST_CREATE_ACCOUNTS; ?></button>
     </div>
   </div>
 </form>

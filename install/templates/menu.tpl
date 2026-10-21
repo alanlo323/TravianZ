@@ -20,7 +20,7 @@
 ## --------------------------------------------------------------------------- ##
 #################################################################################
 
-$steps = ['Intro','Configuration','Database','World Data','Accounts','End'];
+$steps = [INST_STEP_INTRO, INST_STEP_CONFIG, INST_STEP_DATABASE, INST_STEP_WORLD, INST_STEP_ACCOUNTS, INST_STEP_END];
 $cur = (int)($_GET['s'] ?? 0);
 foreach($steps as $i=>$name){
   $state = $i < $cur ? 'done' : ($i == $cur ? 'active' : '');

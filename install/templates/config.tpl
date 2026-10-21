@@ -20,7 +20,7 @@
 #################################################################################
 
 if(isset($_GET['c']) && $_GET['c'] == 1) {
-echo "<div class=\"headline\"><span class=\"f10 c5\">Error creating constant.php check cmod.</span></div><br>";
+echo "<div class=\"headline\"><span class=\"f10 c5\">".INST_ERR_CONST."</span></div><br>";
 }
 
 @session_start();
@@ -86,10 +86,10 @@ $dbPrefix = $_SESSION['install_random_prefix'];
 <input type="hidden" name="subconst" value="1">
 
 <div class="card">
-  <span class="f10 c">SERVER RELATED</span>
+  <span class="f10 c"><?php echo INST_SEC_SERVER; ?></span>
   <div class="grid-2" style="margin-top:8px;">
-    <div><label>Server name</label><input class="input" name="servername" id="servername" value="TravianZ"></div>
-    <div><label>Timezone</label>
+    <div><label><?php echo INST_LBL_SERVER_NAME; ?></label><input class="input" name="servername" id="servername" value="TravianZ"></div>
+    <div><label><?php echo INST_LBL_TIMEZONE; ?></label>
       <select class="input" name="tzone" onchange="refresh(this.value)">
         <option value="1,Africa/Dakar" <?=$tz==1?'selected':''?>>Africa</option>
         <option value="2,America/New_York" <?=$tz==2?'selected':''?>>America</option>
@@ -107,35 +107,35 @@ $dbPrefix = $_SESSION['install_random_prefix'];
         <option value="12,Pacific/Fiji" <?=$tz==12?'selected':''?>>Pacific</option>
       </select>
     </div>
-    <div><label>Server speed</label><input class="input" name="speed" id="speed" value="1"></div>
-    <div><label>Troop speed</label><input class="input" name="incspeed" id="incspeed" value="1"></div>
-    <div><label>Evasion speed</label><input class="input" name="evasionspeed" id="evasionspeed" value="1"></div>
-    <div><label>Trader capacity</label><input class="input" name="tradercap" id="tradercap" value="1"></div>
-    <div><label>Cranny capacity</label><input class="input" name="crannycap" id="crannycap" value="1"></div>
-    <div><label>Trapper capacity</label><input class="input" name="trappercap" id="trappercap" value="1"></div>
-    <div><label>World size</label>
+    <div><label><?php echo INST_LBL_SPEED; ?></label><input class="input" name="speed" id="speed" value="1"></div>
+    <div><label><?php echo INST_LBL_TROOP; ?></label><input class="input" name="incspeed" id="incspeed" value="1"></div>
+    <div><label><?php echo INST_LBL_EVASION; ?></label><input class="input" name="evasionspeed" id="evasionspeed" value="1"></div>
+    <div><label><?php echo INST_LBL_TRADER; ?></label><input class="input" name="tradercap" id="tradercap" value="1"></div>
+    <div><label><?php echo INST_LBL_CRANNY; ?></label><input class="input" name="crannycap" id="crannycap" value="1"></div>
+    <div><label><?php echo INST_LBL_TRAPPER; ?></label><input class="input" name="trappercap" id="trappercap" value="1"></div>
+    <div><label><?php echo INST_LBL_WORLD; ?></label>
       <select class="input" name="wmax">
         <option value="10">10x10</option><option value="25">25x25</option><option value="50">50x50</option>
         <option value="100" selected>100x100</option><option value="150">150x150</option><option value="200">200x200</option>
         <option value="250">250x250</option><option value="300">300x300</option><option value="350">350x350</option><option value="400">400x400</option>
       </select>
     </div>
-    <div><label>Language</label>
+    <div><label><?php echo INST_LBL_LANGUAGE; ?></label>
       <select class="input" name="lang"><option value="en">English</option><option value="fr">French</option><option value="it">Italian</option><option value="es">Spanish</option><option value="ro">Romanian</option><option value="zh">Chinese (Simplified)</option><option value="zh_tw" selected>Chinese (Traditional / 繁體中文)</option></select>
     </div>
-    <div><label>Beginners protection</label>
+    <div><label><?php echo INST_LBL_BEGINNER; ?></label>
       <select class="input" name="beginner">
         <option value="7200">2 hours</option><option value="10800">3 hours</option><option value="18000">5 hours</option><option value="28800">8 hours</option><option value="36000">10 hours</option>
         <option value="43200" selected>12 hours</option><option value="86400">24 hours (1 day)</option><option value="172800">48 hours (2 days)</option><option value="259200">72 hours (3 days)</option><option value="432000">120 hours (5 days)</option>
       </select>
     </div>
-    <div><label>Register Open</label><select class="input" name="reg_open"><option value="true" selected>true</option><option value="false">false</option></select></div>
+    <div><label><?php echo INST_LBL_REG_OPEN; ?></label><select class="input" name="reg_open"><option value="true" selected>true</option><option value="false">false</option></select></div>
   </div>
 </div>
 
 <div class="grid-2">
   <div class="card">
-    <span class="f10 c">NATARS & MAP</span>
+    <span class="f10 c"><?php echo INST_SEC_NATARS; ?></span>
     <div style="margin-top:12px;display:grid;gap:10px;">
       <div><label>Natars Units Multiplier</label><input class="input" name="natars_units" id="natars_units" value="100"></div>
       <div><label>Natars Spawn (days)</label><input class="input" name="natars_spawn_time" id="natars_spawn_time" value="260"></div>
@@ -146,7 +146,7 @@ $dbPrefix = $_SESSION['install_random_prefix'];
     </div>
   </div>
   <div class="card">
-    <span class="f10 c">OASIS & STORAGE</span>
+    <span class="f10 c"><?php echo INST_SEC_OASIS; ?></span>
     <div style="margin-top:12px;display:grid;gap:10px;">
       <div><label>Wood multiplier</label><input class="input" name="oasis_wood_multiplier" id="oasis_wood_multiplier" value="40"></div>
       <div><label>Clay multiplier</label><input class="input" name="oasis_clay_multiplier" id="oasis_clay_multiplier" value="40"></div>
@@ -160,23 +160,23 @@ $dbPrefix = $_SESSION['install_random_prefix'];
 
 <div class="grid-2">
   <div class="card">
-    <span class="f10 c">SQL RELATED</span>
+    <span class="f10 c"><?php echo INST_SEC_SQL; ?></span>
     <div style="margin-top:12px;display:grid;gap:10px;">
-      <div><label>Hostname</label><input class="input" name="sserver" id="sserver" value="<?=htmlspecialchars($dbHost, ENT_QUOTES, 'UTF-8')?>"></div>
-      <div><label>Port</label><input class="input" name="sport" id="sport" value="<?=htmlspecialchars($dbPort, ENT_QUOTES, 'UTF-8')?>"></div>
-      <div><label>Username</label><input class="input" name="suser" id="suser" value="<?=htmlspecialchars($dbUser, ENT_QUOTES, 'UTF-8')?>"></div>
-      <div><label>Password</label><input class="input" type="password" name="spass" id="spass" value="<?=htmlspecialchars($dbPass, ENT_QUOTES, 'UTF-8')?>"></div>
-      <div><label>DB name</label><input class="input" name="sdb" id="sdb" value="<?=htmlspecialchars($dbName, ENT_QUOTES, 'UTF-8')?>"></div>
-      <div><label>Prefix</label><input class="input" name="prefix" id="prefix" value="<?=htmlspecialchars($dbPrefix, ENT_QUOTES, 'UTF-8')?>" size="7"></div>
-      <div><label>Type</label><select class="input" name="connectt"><option value="0" disabled>MYSQL (deprecated, removed in PHP 7)</option><option value="1" selected>MYSQLi</option></select></div>
+      <div><label><?php echo INST_LBL_HOSTNAME; ?></label><input class="input" name="sserver" id="sserver" value="<?=htmlspecialchars($dbHost, ENT_QUOTES, 'UTF-8')?>"></div>
+      <div><label><?php echo INST_LBL_PORT; ?></label><input class="input" name="sport" id="sport" value="<?=htmlspecialchars($dbPort, ENT_QUOTES, 'UTF-8')?>"></div>
+      <div><label><?php echo INST_LBL_USERNAME; ?></label><input class="input" name="suser" id="suser" value="<?=htmlspecialchars($dbUser, ENT_QUOTES, 'UTF-8')?>"></div>
+      <div><label><?php echo INST_LBL_PASSWORD; ?></label><input class="input" type="password" name="spass" id="spass" value="<?=htmlspecialchars($dbPass, ENT_QUOTES, 'UTF-8')?>"></div>
+      <div><label><?php echo INST_LBL_DBNAME; ?></label><input class="input" name="sdb" id="sdb" value="<?=htmlspecialchars($dbName, ENT_QUOTES, 'UTF-8')?>"></div>
+      <div><label><?php echo INST_LBL_PREFIX; ?></label><input class="input" name="prefix" id="prefix" value="<?=htmlspecialchars($dbPrefix, ENT_QUOTES, 'UTF-8')?>" size="7"></div>
+      <div><label><?php echo INST_LBL_TYPE; ?></label><select class="input" name="connectt"><option value="0" disabled>MYSQL (deprecated, removed in PHP 7)</option><option value="1" selected>MYSQLi</option></select></div>
     </div>
   </div>
   <div class="card">
-    <span class="f10 c">SERVER URLS</span>
+    <span class="f10 c"><?php echo INST_SEC_URLS; ?></span>
     <div style="margin-top:12px;display:grid;gap:10px;">
-      <div><label>Server</label><input class="input" name="server" id="homepage" value="http://<?=$_SERVER['HTTP_HOST']?>/"></div>
-      <div><label>Domain</label><input class="input" name="domain" id="homepage" value="http://<?=$_SERVER['HTTP_HOST']?>/"></div>
-      <div><label>Homepage</label><input class="input" name="homepage" id="homepage" value="http://<?=$_SERVER['HTTP_HOST']?>/"></div>
+      <div><label><?php echo INST_LBL_SERVER_URL; ?></label><input class="input" name="server" id="homepage" value="http://<?=$_SERVER['HTTP_HOST']?>/"></div>
+      <div><label><?php echo INST_LBL_DOMAIN; ?></label><input class="input" name="domain" id="homepage" value="http://<?=$_SERVER['HTTP_HOST']?>/"></div>
+      <div><label><?php echo INST_LBL_HOMEPAGE; ?></label><input class="input" name="homepage" id="homepage" value="http://<?=$_SERVER['HTTP_HOST']?>/"></div>
       <div><label>Medal Interval</label><select class="input" name="medalinterval"><option value="0">none</option><option value="(3600*24)">1 day</option><option value="(3600*24*2)">2 days</option><option value="(3600*24*3)">3 days</option><option value="(3600*24*4)">4 days</option><option value="(3600*24*5)">5 days</option><option value="(3600*24*6)">6 days</option><option value="(3600*24*7)" selected>7 days</option></select></div>
       <div><label>Great Workshop</label><select class="input" name="great_wks"><option value="true">true</option><option value="false" selected>false</option></select></div>
       <div><label>WW enabled</label><select class="input" name="ww"><option value="true">true</option><option value="false" selected>false</option></select></div>
@@ -187,7 +187,7 @@ $dbPrefix = $_SESSION['install_random_prefix'];
 </div>
 
 <div class="card">
-  <span class="f10 c">NEW MECHANICS AND FUNCTIONS</span>
+  <span class="f10 c"><?php echo INST_SEC_MECH; ?></span>
 	<div class="grid-1" style="margin-top:12px;display:flex;flex-direction:column;gap:10px;">
 <?php
 $mechs = [
@@ -237,7 +237,7 @@ foreach($mechs as $k => $l){
 </div>
 
 <div class="card">
-  <span class="f10 c">PLUS GOLD PACKAGES</span>
+  <span class="f10 c"><?php echo INST_SEC_PLUS; ?></span>
   <div class="grid-2" style="margin-top:12px;">
     <div><label>PayPal Email</label><input class="input" name="paypal-email" id="paypal-email" value="@"></div>
     <div><label>Currency</label><input class="input" name="paypal-currency" id="paypal-currency" value="EUR"></div>
@@ -258,7 +258,7 @@ foreach($mechs as $k => $l){
 
 <div class="grid-2">
   <div class="card">
-    <span class="f10 c">NEWSBOX OPTIONS</span>
+    <span class="f10 c"><?php echo INST_SEC_NEWS; ?></span>
     <div style="margin-top:12px;display:grid;gap:10px;">
       <div><label>Newsbox 1</label><select class="input" name="box1"><option value="true">Enabled</option><option value="false" selected>Disabled</option></select></div>
       <div><label>Newsbox 2</label><select class="input" name="box2"><option value="true">Enabled</option><option value="false" selected>Disabled</option></select></div>
@@ -266,7 +266,7 @@ foreach($mechs as $k => $l){
     </div>
   </div>
   <div class="card">
-    <span class="f10 c">LOG RELATED (You should disable them)</span>
+    <span class="f10 c"><?php echo INST_SEC_LOG; ?></span>
     <div style="margin-top:12px;display:grid;gap:10px;">
       <div><label>Log Building</label><select class="input" name="log_build"><option value="true">Yes</option><option value="false" selected>No</option></select></div>
       <div><label>Log Tech</label><select class="input" name="log_tech"><option value="true">Yes</option><option value="false" selected>No</option></select></div>
@@ -281,7 +281,7 @@ foreach($mechs as $k => $l){
 </div>
 
 <div class="card">
-  <span class="f10 c">EXTRA OPTIONS</span>
+  <span class="f10 c"><?php echo INST_SEC_EXTRA; ?></span>
   <div class="grid-2" style="margin-top:12px;">
     <div><label>Quest</label><select class="input" name="quest"><option value="true" selected>Yes</option><option value="false">No</option></select></div>
     <div><label>Quest Type</label><select class="input" name="qtype"><option value="25" selected>Official Travian</option><option value="37">TravianZ Extended</option></select></div>
@@ -355,6 +355,6 @@ foreach($mechs as $k => $l){
 </div>
 
 <div style="text-align:center;margin:18px 0;">
-  <button class="btn" type="submit" name="Submit" id="Submit">Save Configuration →</button>
+  <button class="btn" type="submit" name="Submit" id="Submit"><?php echo INST_SAVE_CONFIG; ?></button>
 </div>
 </form>

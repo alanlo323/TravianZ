@@ -21,31 +21,31 @@
 
 include_once('../GameEngine/config.php');
 if (isset($_GET['c']) && $_GET['c'] == '1') {
-    echo '<div class="card" style="background:#fef2f2;border-color:#fecaca;color:#991b1b;">Error creating wdata. Check configuration or file.</div>';
+    echo '<div class="card" style="background:#fef2f2;border-color:#fecaca;color:#991b1b;">'.INST_ERR_WDATA.'</div>';
 }
 if (isset($_GET['err']) && $_GET['err'] == '1') {
-    echo '<div class="card" style="background:#fef2f2;border-color:#fecaca;color:#991b1b;">Existing World Data found! Empty tables <i>'.TB_PREFIX.'odata, '.TB_PREFIX.'units, '.TB_PREFIX.'vdata, '.TB_PREFIX.'wdata</i>.</div>';
+    echo '<div class="card" style="background:#fef2f2;border-color:#fecaca;color:#991b1b;">'.INST_ERR_WDATA_EXISTS.' <i>'.TB_PREFIX.'odata, '.TB_PREFIX.'units, '.TB_PREFIX.'vdata, '.TB_PREFIX.'wdata</i>.</div>';
 }
 $autoStartCroppers = isset($_GET['startCroppers']) && $_GET['startCroppers'] === '1';
 ?>
 <form action="process.php" method="post" id="dataform">
   <input type="hidden" name="subwdata" value="1" />
   <div class="card">
-    <span class="f10 c">Create World Data</span>
-    <p style="color:#475569;"><b>Warning</b>: This can take some time. Please wait until the next page has been loaded.</p>
+    <span class="f10 c"><?php echo INST_CREATE_WORLD; ?></span>
+    <p style="color:#475569;"><?php echo INST_CREATE_WORLD_WARN; ?></p>
     
     <div id="submitWrap" style="display:<?php echo $autoStartCroppers?'none':'block';?>;text-align:center;">
-      <button class="btn" id="Submit" onclick="return proceed()">Create World...</button>
+      <button class="btn" id="Submit" onclick="return proceed()"><?php echo INST_CREATE_WORLD_BTN; ?></button>
     </div>
 
     <div id="progressBox" style="display:<?php echo $autoStartCroppers?'block':'none';?>;">
-      <div style="font-weight:600;margin:10px 0;">Building croppers…</div>
+      <div style="font-weight:600;margin:10px 0;"><?php echo INST_BUILDING_CROPPERS; ?></div>
       <div style="background:#e5e7eb;border-radius:999px;overflow:hidden;height:12px;max-width:600px;">
         <div id="pbar" style="background:linear-gradient(90deg,#f59e0b,#f97316);height:100%;width:0%;transition:width .2s;"></div>
       </div>
-      <div id="pinfo" style="margin-top:6px;font-size:13px;color:#475569;">Starting…</div>
+      <div id="pinfo" style="margin-top:6px;font-size:13px;color:#475569;"><?php echo INST_STARTING; ?></div>
       <pre id="plog" style="margin-top:10px;background:#0f172a;color:#e2e8f0;border-radius:10px;padding:10px;font-size:12px;max-height:200px;overflow:auto;"></pre>
-      <div id="autoNext" style="display:none;margin-top:10px;color:#166534;font-weight:600;">Proceeding to next step in <b id="cd">3</b>…</div>
+      <div id="autoNext" style="display:none;margin-top:10px;color:#166534;font-weight:600;"><?php echo INST_PROCEED_CD; ?></div>
     </div>
   </div>
 </form>

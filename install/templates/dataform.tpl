@@ -21,19 +21,19 @@
 
 include_once('../GameEngine/config.php');
 if(isset($_GET['c']) && $_GET['c'] == 1) {
-    echo '<div class="card" style="border-color:#fecaca;background:#fef2f2;color:#991b1b;"><b>Error importing database. Check configuration.</b></div>';
+    echo '<div class="card" style="border-color:#fecaca;background:#fef2f2;color:#991b1b;"><b>'.INST_ERR_DB_IMPORT.'</b></div>';
 }
 if(isset($_GET['err']) && $_GET['err'] == 1) {
-    echo '<div class="card" style="border-color:#fecaca;background:#fef2f2;color:#991b1b;">Existing structure found! Please remove tables with prefix <b>'.TB_PREFIX.'</b> from database <b>'.SQL_DB.'</b>.</div>';
+    echo '<div class="card" style="border-color:#fecaca;background:#fef2f2;color:#991b1b;">'.sprintf(INST_ERR_DB_EXISTS, '<b>'.TB_PREFIX.'</b>', '<b>'.SQL_DB.'</b>').'</div>';
 }
 ?>
 <form action="process.php" method="post" id="dataform">
   <input type="hidden" name="substruc" value="1">
   <div class="card">
-    <span class="f10 c">Create Database Structure</span>
-    <p style="color:#475569;"><b>Warning</b>: This can take some time. Please wait until the next page loads.</p>
+    <span class="f10 c"><?php echo INST_CREATE_DB; ?></span>
+    <p style="color:#475569;"><?php echo INST_CREATE_DB_WARN; ?></p>
     <div style="text-align:center;margin-top:12px;">
-      <button class="btn" id="Submit" onclick="return proceed()">Create Database...</button>
+      <button class="btn" id="Submit" onclick="return proceed()"><?php echo INST_CREATE_DB_BTN; ?></button>
     </div>
   </div>
 </form>

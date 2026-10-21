@@ -2,6 +2,8 @@
 // don't let SQL time out when 30-500 seconds (depending on php.ini) is not enough
 @set_time_limit(0);
 
+require_once __DIR__ . '/lang_bootstrap.php';
+
 include("templates/script.tpl");
 
 if(!isset($_GET['s'])) {
@@ -33,13 +35,13 @@ date_default_timezone_set($t_zone);
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<title>TravianZ Installation</title>
+	<title><?php echo INST_TITLE; ?></title>
 	<link rel="shortcut icon" href="favicon.ico" />
 	<meta http-equiv="cache-control" content="max-age=0" />
 	<meta http-equiv="pragma" content="no-cache" />
 	<meta http-equiv="expires" content="0" />
 	<meta http-equiv="imagetoolbar" content="no" />
-	<meta http-equiv="content-type" content="text/html; charset=us-ascii" />
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 	<script src="mt-full.js?0ac37" type="text/javascript"></script>
 	<script src="unx.js?f4b7h" type="text/javascript"></script>
 	<script src="new.js?0ac37" type="text/javascript"></script>
@@ -64,7 +66,7 @@ function proceed() {
         e.disabled = "disabled";
     }, 200);
 
-    e.value = "Processing...";
+    e.value = <?php echo json_encode(INST_PROCESSING, JSON_UNESCAPED_UNICODE); ?>;
 
     return true;
 }
@@ -86,22 +88,22 @@ function proceed() {
 				<div id="content" class="login">
 					<?php
 					IHG_Progressbar::draw_css();
-					$bar = new IHG_Progressbar(6, 'Step %d from %d ');
+					$bar = new IHG_Progressbar(6, INST_STEP_FMT);
 					$bar->draw();
 					for($i = 0; $i < ($_GET['s']+1); $i++) {
 						$bar->tick();
 					}
 					?>
 				<div class="headline"><center>
-				<span class="f18 c5">TravianZ Installation Script</span>
+				<span class="f18 c5"><?php echo INST_SCRIPT_TITLE; ?></span>
 				</center></div>
 
 				<?php
 				if(substr(sprintf('%o', fileperms('../')), -4)<'700'){
-					echo"<span class='f18 c5'>ERROR!</span><br />It's not possible to write the config file. Change the permission to '777'. After that, refresh this page!";
+					echo"<span class='f18 c5'>".INST_ERROR."</span><br />".INST_ERR_PERM;
 				} 
 				else if (file_exists("../var/installed")) {
-					echo"<span class='f18 c5'>ERROR!</span><br />Installation appears to have been completed.<br />If this is an error remove /var/installed file in install directory.";
+					echo"<span class='f18 c5'>".INST_ERROR."</span><br />".INST_ERR_DONE;
 				}
 				else
 					switch($_GET['s']){
