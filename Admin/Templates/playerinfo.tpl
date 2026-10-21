@@ -171,7 +171,7 @@
 					$langMap = [
 					'en' => 'English',
 					'ro' => 'Romanian',
-					'zh' => 'Chinese',
+					'zh' => 'Chinese (Simplified)',
 					'fr' => 'French',
 					'it' => 'Italian',
 					];

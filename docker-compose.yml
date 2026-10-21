@@ -5,7 +5,7 @@ services:
       dockerfile: Dockerfile
     container_name: travianz-web
     ports:
-      - "8080:80"
+      - "8090:80"
     volumes:
       - ./:/var/www/html
     environment:
