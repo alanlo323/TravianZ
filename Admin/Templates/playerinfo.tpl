@@ -172,8 +172,10 @@
 					'en' => 'English',
 					'ro' => 'Romanian',
 					'zh' => 'Chinese (Simplified)',
+					'zh_tw' => 'Chinese (Traditional)',
 					'fr' => 'French',
 					'it' => 'Italian',
+					'es' => 'Spanish',
 					];
 					$userLang = $user['lang'] ?? 'en';
 						echo htmlspecialchars($langMap[$userLang] ?? strtoupper($userLang));

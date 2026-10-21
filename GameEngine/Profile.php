@@ -137,7 +137,7 @@ class Profile {
 		if (!empty($post['lang'])) {
 			$lang = strtolower(trim($post['lang']));
 
-			if (preg_match('/^[a-z]{2}$/', $lang)
+			if (preg_match('/^[a-z_]{2,}$/', $lang)
 				&& is_file(__DIR__ . '/Lang/' . $lang . '.php')) {
 				$database->updateUserField($session->uid, "lang", $lang, 1);
 				$_SESSION['lang'] = $lang;

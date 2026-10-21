@@ -1907,7 +1907,8 @@ tz_def('TZ_CELEBRATION_STILL_NEEDS', '庆典还需要：');
 tz_def('TZ_CENTRE', '中心：');
 tz_def('TZ_CHANGE_NAME', '更改名称');
 tz_def('TZ_CHANGE_YOUR_VILLAGE_S_NAME_TO_SOME', '给您的村庄起个好听的名字。');
-tz_def('TZ_CHINESE', '中文');
+tz_def('TZ_CHINESE', '简体中文');
+tz_def('TZ_CHINESE_TW', '繁体中文');
 tz_def('TZ_CLAY_25_5_GOLD', '黏土 +25%（5 金币）');
 tz_def('TZ_CLOSED_FORUM', '封闭论坛');
 tz_def('TZ_CLOSE_ADRESSBOOK', '关闭通讯录');
@@ -2354,3 +2355,5 @@ tz_def('MANUAL_NEW_FEATURES_DESC', '这些是你在原版 Travian T3.6 游戏中
 tz_def('MANUAL_FAQ', 'Travian 常见问题');
 tz_def('MANUAL_FAQ_DESC', '此游戏内帮助仅提供简要信息。更多信息请访问');
 tz_def('ADM_SPANISH', '西班牙语');
+tz_def('ADM_CHINESE', '简体中文');
+tz_def('ADM_CHINESE_TW', '繁体中文');

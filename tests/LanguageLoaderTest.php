@@ -135,7 +135,7 @@ if (isset($argv[1])) {
     exit(0);
 }
 
-$languages = ['en', 'es', 'fr', 'it', 'ro', 'zh'];
+$languages = ['en', 'es', 'fr', 'it', 'ro', 'zh', 'zh_tw'];
 foreach ($languages as $language) {
     $pipes = [];
     $process = proc_open(

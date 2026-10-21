@@ -527,6 +527,9 @@ if(isset($_POST['lang']))
             <option value="zh" <?php if($session->userinfo['lang']=="zh") echo 'selected'; ?>>
                 <?php echo TZ_CHINESE; ?>
             </option>
+            <option value="zh_tw" <?php if($session->userinfo['lang']=="zh_tw") echo 'selected'; ?>>
+                <?php echo TZ_CHINESE_TW; ?>
+            </option>
             <option value="fr" <?php if($session->userinfo['lang']=="fr") echo 'selected'; ?>>
                 <?php echo TZ_FRENCH; ?>
             </option>

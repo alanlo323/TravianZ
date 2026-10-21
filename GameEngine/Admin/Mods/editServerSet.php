@@ -174,7 +174,7 @@ $text = admin_config_template_contents(array(
 		if (isset($_POST['lang'])) {
 			$langCandidate = (string) $_POST['lang'];
 
-			if (preg_match('/^[a-z]{2}$/', $langCandidate)
+			if (preg_match('/^[a-z_]{2,}$/', $langCandidate)
 				&& file_exists(__DIR__ . '/../../Lang/' . $langCandidate . '.php')) {
 				$serverLang = $langCandidate;
 			}
