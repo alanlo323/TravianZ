@@ -139,6 +139,23 @@ CREATE TABLE IF NOT EXISTS `%PREFIX%admin_log` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
+-- AI opponent action log. Existing worlds also create this from MYSQLi_DB::ensureAiLogTable().
+--
+
+CREATE TABLE IF NOT EXISTS `%PREFIX%ai_log` (
+ `id` int(11) NOT NULL AUTO_INCREMENT,
+ `time` int(11) NOT NULL,
+ `uid` int(11) NOT NULL,
+ `wid` int(11) NOT NULL,
+ `action` varchar(32) NOT NULL,
+ `target` int(11) NOT NULL DEFAULT 0,
+ `result` varchar(16) NOT NULL,
+ `reason` varchar(32) NOT NULL DEFAULT '',
+ PRIMARY KEY (`id`),
+ KEY `uid_time` (`uid`, `time`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
 -- Dumping data for table `%PREFIX%admin_log`
 --
 

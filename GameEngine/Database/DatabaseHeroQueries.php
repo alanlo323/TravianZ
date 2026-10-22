@@ -291,4 +291,15 @@ trait DatabaseHeroQueries {
 
 		return $ok;
     }
+
+    function nextOpenAdventure($uid) {
+        $uid = (int) $uid;
+        $now = time();
+        $q = "SELECT id FROM " . TB_PREFIX . "hero_adventure"
+            . " WHERE uid = $uid AND status = 0 AND expire > $now ORDER BY id ASC LIMIT 1";
+        $result = mysqli_query($this->dblink, $q);
+        $row = $result ? mysqli_fetch_assoc($result) : null;
+
+        return $row ? (int) $row['id'] : 0;
+    }
 }

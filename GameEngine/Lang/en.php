@@ -4441,6 +4441,24 @@ tz_def('GCHAT_POLL_CREATE',   'Create poll');
 tz_def('GCHAT_POLL_VOTES_WORD', 'votes');
 tz_def('GCHAT_EMOJI_TITLE',   'Emoji');
 tz_def('GCHAT_ERROR_GENERIC', 'Something went wrong.');
+
+tz_def('AI_OPPONENTS_SETTING', 'Computer opponents (1 = on)');
+tz_def('AI_OPPONENT_COUNT', 'Computer opponents for tribe');
+tz_def('AI_DIPLOMACY_SETTING', 'Computer opponent diplomacy');
+tz_def('AI_DIPLOMACY_FREE', 'Each plays alone');
+tz_def('AI_DIPLOMACY_ALLIANCE', 'One shared alliance');
+tz_def('AI_LOG_TITLE', 'Computer opponent log');
+tz_def('AI_LOG_ACCOUNT', 'Account');
+tz_def('AI_LOG_ALL', 'All');
+tz_def('AI_LOG_FILTER', 'Show');
+tz_def('AI_LOG_GOLD', 'Gold to grant');
+tz_def('AI_LOG_GRANT', 'Grant gold');
+tz_def('AI_LOG_TIME', 'Time');
+tz_def('AI_LOG_VILLAGE', 'Village');
+tz_def('AI_LOG_ACTION', 'Action');
+tz_def('AI_LOG_TARGET', 'Target');
+tz_def('AI_LOG_RESULT', 'Result');
+tz_def('AI_LOG_REASON', 'Reason');
 // Phase 3 (09.09.2026): @username mentions, share battle reports
 tz_def('GCHAT_SHARE_REPORT',    'Share to chat');
 tz_def('GCHAT_SHARE_REPORT_OK', 'Shared to chat!');

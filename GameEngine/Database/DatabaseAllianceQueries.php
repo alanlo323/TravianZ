@@ -868,4 +868,12 @@ trait DatabaseAllianceQueries {
 		$dbarray = mysqli_fetch_array($result);
 		return $dbarray['alliance'];
 	}
+
+    function findAllianceByTag($tag) {
+        $tag = $this->escape((string) $tag);
+        $result = mysqli_query($this->dblink, "SELECT id, max FROM " . TB_PREFIX . "alidata WHERE tag = '$tag' LIMIT 1");
+        $row = $result ? mysqli_fetch_assoc($result) : null;
+
+        return $row ? $row : null;
+    }
 }

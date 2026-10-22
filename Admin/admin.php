@@ -117,6 +117,7 @@ function admin_validated_page(string $raw): string
         'heatmap',
         'goldShop',
         'questEditor',
+        'ai_log',
     ];
 
     return in_array($raw, $whitelist, true) ? $raw : '';
@@ -293,6 +294,10 @@ if ($page !== '') {
 
         case 'admin_log':
             $subpage = ADMIN_ADMIN_LOG;
+            break;
+
+        case 'ai_log':
+            $subpage = AI_LOG_TITLE;
             break;
 
         case 'config':
@@ -889,6 +894,7 @@ body.app #menu li.sub ul li a:hover{color:#d97706!important}
                         <li class="sub"><a href="#"><?php echo ADMIN_ADMIN; ?></a>
                             <ul>
                                 <li><a href="?p=admin_log"><font color="Red"><b><?php echo ADMIN_ADMIN_LOG; ?></b></font></a></li>
+                                <li><a href="?p=ai_log"><font color="Red"><b><?php echo AI_LOG_TITLE; ?></b></font></a></li>
 								<li><a href="?p=questEditor"><font color="Red"><b><?php echo ADMIN_QUEST_EDITOR; ?></b></font></a></li>
                                 <li><a href="?p=heatmap"><font color="Red"><b><?php echo ADMIN_WORLD_MAP_HEATMAP; ?></b></font></a></li>
                                 <li><a href="?p=debug_log"><?php echo ADMIN_DEBUG_ERROR_LOG; ?></a></li>

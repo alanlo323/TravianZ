@@ -501,22 +501,32 @@ trait DatabaseUserQueries {
         return isset($dbarray['timestamp']) ? (int)$dbarray['timestamp'] : 0;
 	}
 
+    function listAiOpponentUsers() {
+        $q = "SELECT id, username, tribe, alliance, gold, protect, cp FROM " . TB_PREFIX . "users"
+            . " WHERE desc2 = 'ai-opponent' AND id > 5 ORDER BY id";
+        $result = mysqli_query($this->dblink, $q);
+
+        return $result ? $this->mysqli_fetch_all($result) : array();
+    }
+
+    function countAiOpponentsByTribe($tribe) {
+        $tribe = (int) $tribe;
+        $q = "SELECT COUNT(*) AS c FROM " . TB_PREFIX . "users WHERE desc2 = 'ai-opponent' AND tribe = $tribe";
+        $result = mysqli_query($this->dblink, $q);
+        $row = $result ? mysqli_fetch_assoc($result) : null;
+
+        return $row ? (int) $row['c'] : 0;
+    }
+
+    function touchAiOpponentActivity() {
+        $now = time();
+        $q = "UPDATE " . TB_PREFIX . "users SET timestamp = $now WHERE desc2 = 'ai-opponent' AND id > 5";
+
+        return mysqli_query($this->dblink, $q);
+    }
+
 	/**
-	 * PUNCTUL UNIC DE CHELTUIRE A AURULUI.
-	 *
-	 * Scade $amount aur de la $uid, ATOMIC: conditia "gold >= amount" e in
-	 * acelasi UPDATE, deci doua cereri simultane nu pot scoate soldul pe minus.
-	 * Intoarce true doar daca s-a scazut efectiv.
-	 *
-	 * De ce exista: pana acum cheltuirea era imprastiata in ~11 locuri, iar
-	 * o parte scriau ABSOLUT ("gold = $session->gold - 2"). Scrierea absoluta
-	 * porneste de la soldul din sesiune, care poate fi vechi de pana la 30 de
-	 * secunde (cache-ul din Session::PopulateVar) - de aici riscul de dubla
-	 * cheltuire pe care il semnalau si comentariile din Building.php si
-	 * build.php. Scaderea relativa nu are problema asta.
-	 *
-	 * NU verifica permisiunile de sitter: gardul se pune in stratul de mai sus,
-	 * unde exista context pentru mesajul de eroare si pentru redirect.
+	 * Single gold-spend path. The balance check is in the same UPDATE.
 	 */
 	function spendGold($uid, $amount, $reason = '') {
 

@@ -230,6 +230,33 @@ function refresh(tz) {
                     <td><input class="fm" name="natars_ww_start_delay" value="<?php echo NATARS_WW_START_DELAY;?>" style="width: 20%;"></td>
                 </tr>
                 <tr>
+                    <td class="b"><?php echo AI_OPPONENTS_SETTING; ?></td>
+                    <td>
+                        <select name="ai_opponents">
+                            <option value="0" <?php if (!defined('AI_OPPONENTS') || (int) AI_OPPONENTS <= 0) echo 'selected'; ?>>0</option>
+                            <option value="1" <?php if (defined('AI_OPPONENTS') && (int) AI_OPPONENTS > 0) echo 'selected'; ?>>1</option>
+                        </select>
+                    </td>
+                </tr>
+                <?php foreach (array(1, 2, 3, 6, 7, 8, 9) as $aiTribe) {
+                    $aiCountName = 'AI_COUNT_' . $aiTribe;
+                    $aiCountValue = defined($aiCountName) ? (int) constant($aiCountName) : 1;
+                ?>
+                <tr>
+                    <td class="b"><?php echo AI_OPPONENT_COUNT; ?> <?php echo (int) $aiTribe; ?></td>
+                    <td><input class="fm" name="ai_count_<?php echo (int) $aiTribe; ?>" value="<?php echo $aiCountValue; ?>" style="width: 20%;"></td>
+                </tr>
+                <?php } ?>
+                <tr>
+                    <td class="b"><?php echo AI_DIPLOMACY_SETTING; ?></td>
+                    <td>
+                        <select name="ai_diplomacy">
+                            <option value="0" <?php if (!defined('AI_DIPLOMACY') || (int) AI_DIPLOMACY !== 1) echo 'selected'; ?>><?php echo AI_DIPLOMACY_FREE; ?></option>
+                            <option value="1" <?php if (defined('AI_DIPLOMACY') && (int) AI_DIPLOMACY === 1) echo 'selected'; ?>><?php echo AI_DIPLOMACY_ALLIANCE; ?></option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
                     <td class="b"><?php echo CONF_SERV_MAPSIZE ?> <em class="tooltip">?<span class="classic"><?php echo CONF_SERV_MAPSIZE_TOOLTIP ?></span></em></td>
                     <td><?php echo WORLD_MAX;?>x<?php echo WORLD_MAX;?></td>
                 </tr>

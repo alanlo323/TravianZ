@@ -251,6 +251,17 @@ define("NATARS_WW_BUILDING_PLAN_SPAWN_TIME",%NATARS_WW_BUILDING_PLAN_SPAWN_TIME%
 // 0 = The Natars do not build a World Wonder.
 define("NATARS_WW_START_DELAY",%NATARS_WW_START_DELAY%); 
 
+// ***** Computer opponents. 0 = off. Counts are per enabled tribe. Diplomacy 0 = free-for-all, 1 = one alliance.
+define("AI_OPPONENTS",%AI_OPPONENTS%);
+define("AI_COUNT_1",%AI_COUNT_1%);
+define("AI_COUNT_2",%AI_COUNT_2%);
+define("AI_COUNT_3",%AI_COUNT_3%);
+define("AI_COUNT_6",%AI_COUNT_6%);
+define("AI_COUNT_7",%AI_COUNT_7%);
+define("AI_COUNT_8",%AI_COUNT_8%);
+define("AI_COUNT_9",%AI_COUNT_9%);
+define("AI_DIPLOMACY",%AI_DIPLOMACY%);
+
 // ***** Nature troops regeneration time
 define("NATURE_REGTIME",%NATURE_REGTIME%); 
 

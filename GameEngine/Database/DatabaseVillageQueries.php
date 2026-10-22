@@ -2465,4 +2465,60 @@ trait DatabaseVillageQueries {
     	$q = "UPDATE ".TB_PREFIX."vdata SET capital = ".$mode." WHERE wref = $wref";
     	return mysqli_query($this->dblink, $q);
     }
+
+    /**
+     * Spend warehouse resources only when all four balances cover the cost.
+     * A short balance does not clamp the row to zero.
+     */
+    function spendVillageResources($wid, $wood, $clay, $iron, $crop) {
+        $wid = (int) $wid;
+        $wood = (int) $wood;
+        $clay = (int) $clay;
+        $iron = (int) $iron;
+        $crop = (int) $crop;
+        if ($wid <= 0 || $wood < 0 || $clay < 0 || $iron < 0 || $crop < 0) {
+            return false;
+        }
+        if ($wood + $clay + $iron + $crop === 0) {
+            return true;
+        }
+
+        $q = "UPDATE " . TB_PREFIX . "vdata SET "
+            . "wood = wood - $wood, clay = clay - $clay, iron = iron - $iron, crop = crop - $crop "
+            . "WHERE wref = $wid AND wood >= $wood AND clay >= $clay AND iron >= $iron AND crop >= $crop";
+        mysqli_query($this->dblink, $q);
+
+        return mysqli_affected_rows($this->dblink) === 1;
+    }
+
+    function listVillagesByOwner($uid) {
+        $uid = (int) $uid;
+        $result = mysqli_query(
+            $this->dblink,
+            "SELECT wref, name, owner, pop, cp, wood, clay, iron, crop, maxstore, maxcrop FROM "
+            . TB_PREFIX . "vdata WHERE owner = $uid ORDER BY capital DESC, wref ASC"
+        );
+
+        return $result ? $this->mysqli_fetch_all($result) : array();
+    }
+
+    function findUnoccupiedOasis() {
+        $result = mysqli_query(
+            $this->dblink,
+            "SELECT wref FROM " . TB_PREFIX . "odata WHERE conqured = 0 ORDER BY wref ASC LIMIT 1"
+        );
+        $row = $result ? mysqli_fetch_assoc($result) : null;
+
+        return $row ? (int) $row['wref'] : 0;
+    }
+
+    function findEmptyValley() {
+        $q = "SELECT w.id FROM " . TB_PREFIX . "wdata w"
+            . " LEFT JOIN " . TB_PREFIX . "odata o ON o.wref = w.id"
+            . " WHERE w.occupied = 0 AND o.wref IS NULL LIMIT 1";
+        $result = mysqli_query($this->dblink, $q);
+        $row = $result ? mysqli_fetch_assoc($result) : null;
+
+        return $row ? (int) $row['id'] : 0;
+    }
 }

@@ -1061,4 +1061,56 @@ trait DatabaseTroopQueries {
 		$result = mysqli_query($this->dblink,$q);
 		return $this->mysqli_fetch_all($result);
 	}
+
+    /**
+     * Train units for an explicit village. Does not read the page-global village.
+     * $queuedRows are the existing rows for this unit; timestamps are computed by the caller.
+     */
+    function trainUnitAtVillage($vid, $unit, $amt, $pop, $each, $time, $time2) {
+        $vid = (int) $vid;
+        $unit = (int) $unit;
+        $amt = (int) $amt;
+        $pop = (int) $pop;
+        $each = (int) $each;
+        $time = (int) $time;
+        $time2 = (int) $time2;
+        if ($vid <= 0 || $unit <= 0 || $amt <= 0) {
+            return false;
+        }
+
+        $q = "INSERT INTO " . TB_PREFIX . "training values (0, $vid, $unit, $amt, $pop, $time, $each, $time2)";
+        return mysqli_query($this->dblink, $q);
+    }
+
+    /**
+     * Subtract troops only when every requested column still has enough.
+     * Returns true when one row was updated.
+     *
+     * @param array $amounts column => positive amount, for example u1 => 1
+     */
+    function spendVillageUnits($vref, array $amounts) {
+        $vref = (int) $vref;
+        $sets = array();
+        $checks = array();
+        foreach ($amounts as $column => $amount) {
+            if (!preg_match('/^u[0-9]{1,2}$/', (string) $column)) {
+                return false;
+            }
+            $amount = (int) $amount;
+            if ($amount <= 0) {
+                continue;
+            }
+            $sets[] = $column . ' = ' . $column . ' - ' . $amount;
+            $checks[] = $column . ' >= ' . $amount;
+        }
+        if ($sets === array()) {
+            return false;
+        }
+
+        $q = "UPDATE " . TB_PREFIX . "units SET " . implode(', ', $sets)
+            . " WHERE vref = " . $vref . " AND " . implode(' AND ', $checks);
+        mysqli_query($this->dblink, $q);
+
+        return mysqli_affected_rows($this->dblink) === 1;
+    }
 }

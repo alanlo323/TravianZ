@@ -30,6 +30,26 @@ trait DatabaseBuildingQueries {
 		return mysqli_query($this->dblink,$q);
 	}
 
+    function getFdataRow($wid) {
+        $wid = (int) $wid;
+        $result = mysqli_query($this->dblink, "SELECT * FROM " . TB_PREFIX . "fdata WHERE vref = $wid LIMIT 1");
+
+        return $result ? mysqli_fetch_assoc($result) : null;
+    }
+
+    function buildQueueFields($wid) {
+        $wid = (int) $wid;
+        $result = mysqli_query($this->dblink, "SELECT field FROM " . TB_PREFIX . "bdata WHERE wid = $wid");
+        $fields = array();
+        if ($result) {
+            while ($row = mysqli_fetch_assoc($result)) {
+                $fields[] = (int) $row['field'];
+            }
+        }
+
+        return $fields;
+    }
+
 	/**
 	 * B-W2: finalizeaza o cladire (nivel + tip) in fdata SI invalideaza cache-ul
 	 * de resource levels. Inlocuieste UPDATE-ul raw din Building::finishAll()

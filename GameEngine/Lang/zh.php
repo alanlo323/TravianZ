@@ -2357,3 +2357,21 @@ tz_def('MANUAL_FAQ_DESC', '此游戏内帮助仅提供简要信息。更多信�
 tz_def('ADM_SPANISH', '西班牙语');
 tz_def('ADM_CHINESE', '简体中文');
 tz_def('ADM_CHINESE_TW', '繁体中文');
+
+tz_def('AI_OPPONENTS_SETTING', 'Computer opponents (1 = on)');
+tz_def('AI_OPPONENT_COUNT', 'Computer opponents for tribe');
+tz_def('AI_DIPLOMACY_SETTING', 'Computer opponent diplomacy');
+tz_def('AI_DIPLOMACY_FREE', 'Each plays alone');
+tz_def('AI_DIPLOMACY_ALLIANCE', 'One shared alliance');
+tz_def('AI_LOG_TITLE', 'Computer opponent log');
+tz_def('AI_LOG_ACCOUNT', 'Account');
+tz_def('AI_LOG_ALL', 'All');
+tz_def('AI_LOG_FILTER', 'Show');
+tz_def('AI_LOG_GOLD', 'Gold to grant');
+tz_def('AI_LOG_GRANT', 'Grant gold');
+tz_def('AI_LOG_TIME', 'Time');
+tz_def('AI_LOG_VILLAGE', 'Village');
+tz_def('AI_LOG_ACTION', 'Action');
+tz_def('AI_LOG_TARGET', 'Target');
+tz_def('AI_LOG_RESULT', 'Result');
+tz_def('AI_LOG_REASON', 'Reason');

@@ -206,6 +206,20 @@ $text = admin_config_template_contents(array(
 		$natarsWwDelay = isset($_POST['natars_ww_start_delay']) ? (int) $_POST['natars_ww_start_delay'] : 10;
 		if ($natarsWwDelay < 0 || $natarsWwDelay > 3650) { $natarsWwDelay = 10; }
 		tz_config_set($text, '%NATARS_WW_START_DELAY%', $natarsWwDelay);
+		$aiOn = isset($_POST['ai_opponents']) ? (int) $_POST['ai_opponents'] : 0;
+		tz_config_set($text, '%AI_OPPONENTS%', $aiOn > 0 ? 1 : 0);
+		foreach (array(1, 2, 3, 6, 7, 8, 9) as $aiTribe) {
+			$count = isset($_POST['ai_count_' . $aiTribe]) ? (int) $_POST['ai_count_' . $aiTribe] : 1;
+			if ($count < 0) {
+				$count = 0;
+			}
+			if ($count > 20) {
+				$count = 20;
+			}
+			tz_config_set($text, '%AI_COUNT_' . $aiTribe . '%', $count);
+		}
+		$aiDiplomacy = isset($_POST['ai_diplomacy']) ? (int) $_POST['ai_diplomacy'] : 0;
+		tz_config_set($text, '%AI_DIPLOMACY%', $aiDiplomacy === 1 ? 1 : 0);
 		tz_config_set($text, '%NATURE_REGTIME%', $_POST['nature_regtime'] ?? '');
 		tz_config_set($text, '%OASIS_WOOD_MULTIPLIER%', $_POST['oasis_wood_multiplier'] ?? '');
 		tz_config_set($text, '%OASIS_CLAY_MULTIPLIER%', $_POST['oasis_clay_multiplier'] ?? '');

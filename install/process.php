@@ -260,6 +260,15 @@ class Process {
 		$natarsWwDelay = isset($_POST['natars_ww_start_delay']) ? (int) $_POST['natars_ww_start_delay'] : 10;
 		if ($natarsWwDelay < 0 || $natarsWwDelay > 3650) { $natarsWwDelay = 10; }
 		$findReplace["%NATARS_WW_START_DELAY%"] = $natarsWwDelay;
+		$findReplace["%AI_OPPONENTS%"] = 0;
+		$findReplace["%AI_COUNT_1%"] = 1;
+		$findReplace["%AI_COUNT_2%"] = 1;
+		$findReplace["%AI_COUNT_3%"] = 1;
+		$findReplace["%AI_COUNT_6%"] = 1;
+		$findReplace["%AI_COUNT_7%"] = 1;
+		$findReplace["%AI_COUNT_8%"] = 1;
+		$findReplace["%AI_COUNT_9%"] = 1;
+		$findReplace["%AI_DIPLOMACY%"] = 0;
 		$findReplace["%NATURE_REGTIME%"] = $_POST['nature_regtime'];
 		$findReplace["%OASIS_WOOD_MULTIPLIER%"] = $_POST['oasis_wood_multiplier'];
 		$findReplace["%OASIS_CLAY_MULTIPLIER%"] = $_POST['oasis_clay_multiplier'];

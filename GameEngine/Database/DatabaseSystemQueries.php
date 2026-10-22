@@ -463,4 +463,75 @@ trait DatabaseSystemQueries {
             lvl_fatal = $fatal, max_size_mb = $maxSizeMb, auto_off_hours = $autoOffHours
         WHERE id = 1");
 }
+
+    /**
+     * AI opponent action log. Installed worlds create the table on the next tick.
+     */
+    function ensureAiLogTable() {
+        $q = "CREATE TABLE IF NOT EXISTS `" . TB_PREFIX . "ai_log` (
+            `id` int(11) NOT NULL AUTO_INCREMENT,
+            `time` int(11) NOT NULL,
+            `uid` int(11) NOT NULL,
+            `wid` int(11) NOT NULL,
+            `action` varchar(32) NOT NULL,
+            `target` int(11) NOT NULL DEFAULT 0,
+            `result` varchar(16) NOT NULL,
+            `reason` varchar(32) NOT NULL DEFAULT '',
+            PRIMARY KEY (`id`),
+            KEY `uid_time` (`uid`, `time`)
+        ) ENGINE=InnoDB DEFAULT CHARSET=utf8";
+
+        return mysqli_query($this->dblink, $q);
+    }
+
+    function latestAiLog($uid, $wid, $action) {
+        $uid = (int) $uid;
+        $wid = (int) $wid;
+        $action = $this->escape((string) $action);
+        $q = "SELECT wid, action, target, result, reason FROM " . TB_PREFIX . "ai_log"
+            . " WHERE uid = $uid AND wid = $wid AND action = '$action'"
+            . " ORDER BY id DESC LIMIT 1";
+        $result = mysqli_query($this->dblink, $q);
+        if (!$result) {
+            return null;
+        }
+        $row = mysqli_fetch_assoc($result);
+
+        return $row ? $row : null;
+    }
+
+    function insertAiLog($uid, $wid, $action, $target, $result, $reason) {
+        $uid = (int) $uid;
+        $wid = (int) $wid;
+        $target = (int) $target;
+        $time = time();
+        $action = $this->escape((string) $action);
+        $result = $this->escape((string) $result);
+        $reason = $this->escape((string) $reason);
+        $q = "INSERT INTO " . TB_PREFIX . "ai_log (time, uid, wid, action, target, result, reason)"
+            . " VALUES ($time, $uid, $wid, '$action', $target, '$result', '$reason')";
+
+        return mysqli_query($this->dblink, $q);
+    }
+
+    function listAiLogs($uid, $limit) {
+        $uid = (int) $uid;
+        $limit = max(1, min(200, (int) $limit));
+        $where = $uid > 0 ? " WHERE uid = $uid" : '';
+        $q = "SELECT id, time, uid, wid, action, target, result, reason FROM " . TB_PREFIX . "ai_log"
+            . $where . " ORDER BY id DESC LIMIT $limit";
+        $result = mysqli_query($this->dblink, $q);
+
+        return $result ? $this->mysqli_fetch_all($result) : array();
+    }
+
+    function purgeAiSuccessLogs($olderThan) {
+        $olderThan = (int) $olderThan;
+        if ($olderThan <= 0) {
+            return true;
+        }
+        $q = "DELETE FROM " . TB_PREFIX . "ai_log WHERE result <> 'deny' AND time < $olderThan";
+
+        return mysqli_query($this->dblink, $q);
+    }
 }
