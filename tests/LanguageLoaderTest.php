@@ -51,6 +51,11 @@ function run_language_case($language)
             'welcome' => '欢迎来到 Test Server',
             'fallback' => ['TRIBE7', 'Egyptians'],
         ],
+        'zh_tw' => [
+            'tribe' => '羅馬',
+            'welcome' => '歡迎來到 Test Server',
+            'spanish_label' => '西班牙語',
+        ],
     ];
 
     if (!isset($expected[$language])) {
@@ -166,4 +171,4 @@ foreach ($languages as $language) {
     echo $stdout;
 }
 
-echo "PASS language loader: 6 locales\n";
+echo "PASS language loader: 7 locales\n";
